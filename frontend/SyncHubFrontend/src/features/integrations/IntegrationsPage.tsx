@@ -9,6 +9,7 @@ import { EmptyState } from "../../components/ui/EmptyState";
 import { ConfirmDialog } from "../../components/ui/ConfirmDialog";
 import { useToast } from "../../components/ui/toast-context";
 import { integrationsClient, type CredentialResponse } from "../../lib/api/integrations-client";
+import { ShopeeSection } from "./ShopeeSection";
 
 interface Credential extends CredentialResponse {
   statusLabel: string;
@@ -203,20 +204,13 @@ export function IntegrationsPage() {
         </CardBody>
       </Card>
 
+      <ShopeeSection />
+
       {credentials.length > 0 && (
         <Card>
           <CardHeader title="Outros Marketplaces" />
           <CardBody>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              <div className="flex items-center justify-center gap-3 rounded-xl border-2 border-dashed border-slate-300 p-6 bg-slate-50">
-                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-brand-100">
-                  <span className="text-xs font-bold text-brand-700">SP</span>
-                </div>
-                <div>
-                  <h4 className="font-medium text-slate-700">Shopee</h4>
-                  <p className="text-sm text-slate-500">Integração em desenvolvimento</p>
-                </div>
-              </div>
               <div className="flex items-center justify-center gap-3 rounded-xl border-2 border-dashed border-slate-300 p-6 bg-slate-50">
                 <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-orange-100">
                   <span className="text-xs font-bold text-orange-700">AM</span>

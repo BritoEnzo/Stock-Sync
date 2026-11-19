@@ -17,6 +17,10 @@ export default defineConfig({
         cookieDomainRewrite: { "localhost": "" },
         cookiePathRewrite: { "/": "/" },
       },
+      "/api/v1/auth/shopee": {
+        target: "http://localhost:8003",
+        changeOrigin: true,
+      },
       "/api/v1/integrations": {
         target: "http://localhost:8003",
         changeOrigin: true,

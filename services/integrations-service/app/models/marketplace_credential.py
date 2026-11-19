@@ -25,6 +25,9 @@ class MarketplaceCredential(SQLModel, table=True):
         max_length=100,
         description="Mercado Livre nickname/username for public profile URL",
     )
+    shopee_shop_id: int | None = Field(
+        default=None, unique=True, description="Shopee numeric shop ID", sa_type=BigInteger
+    )
     access_token: str = Field(min_length=1, max_length=2000)
     refresh_token: str | None = Field(default=None, max_length=2000)
     expires_at: datetime | None = Field(default=None)

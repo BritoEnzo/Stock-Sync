@@ -16,8 +16,25 @@ class Settings(BaseSettings):
     redis_url: str = "redis://localhost:6379/0"
     mercado_livre_app_id: str = ""
     mercado_livre_client_secret: str = ""
+    # Shopee Open Platform (v2) — credenciais do app criado no Open Platform Console
     shopee_partner_id: str = ""
     shopee_partner_key: str = ""
+    # Host da API. Produção: https://partner.shopeemobile.com
+    # Sandbox: https://partner.test-stable.shopeemobile.com (confira no Console)
+    shopee_api_host: str = "https://partner.shopeemobile.com"
+    # Host aberto pelo NAVEGADOR na tela de autorização. Vazio = mesmo de shopee_api_host.
+    # Só difere com o simulador local (navegador usa localhost, o serviço usa a rede Docker).
+    shopee_auth_host: str = ""
+    # URL pública que a Shopee chama após a autorização da loja. O domínio precisa
+    # estar cadastrado como "Redirect URL Domain" no app do Console.
+    shopee_redirect_url: str = "http://localhost:5173/api/v1/auth/shopee/callback"
+    # Vitrine usada para montar o link público do anúncio
+    shopee_shop_url: str = "https://shopee.com.br"
+
+    # URL do frontend (para redirecionar o usuário após o OAuth)
+    frontend_url: str = "http://localhost:5173"
+    # catalog-service, usado para cruzar o estoque da Shopee com os SKUs internos
+    catalog_service_url: str = "http://localhost:8001"
 
     # JWT settings (shared with auth-service for token validation)
     jwt_secret_key: str = "your-super-secret-jwt-key-change-in-production"

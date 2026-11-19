@@ -96,6 +96,12 @@ services:
       MERCADO_LIVRE_CLIENT_SECRET: ${MERCADO_LIVRE_CLIENT_SECRET:-}
       SHOPEE_PARTNER_ID: ${SHOPEE_PARTNER_ID:-}
       SHOPEE_PARTNER_KEY: ${SHOPEE_PARTNER_KEY:-}
+      SHOPEE_API_HOST: ${SHOPEE_API_HOST:-https://partner.shopeemobile.com}
+      SHOPEE_AUTH_HOST: ${SHOPEE_AUTH_HOST:-}
+      SHOPEE_SHOP_URL: ${SHOPEE_SHOP_URL:-https://shopee.com.br}
+      SHOPEE_REDIRECT_URL: ${SHOPEE_REDIRECT_URL:-http://localhost:5173/api/v1/auth/shopee/callback}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:5173}
+      CATALOG_SERVICE_URL: http://catalog-service:8000
       JWT_SECRET_KEY: ${JWT_SECRET_KEY:-your-super-secret-jwt-key-change-in-production}
       JWT_ALGORITHM: HS256
     depends_on:
@@ -103,6 +109,17 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+
+  # Simulador local da Shopee Open Platform v2 (ver services/shopee-mock/README.md)
+  shopee-mock:
+    build:
+      context: ./services/shopee-mock
+    ports:
+      - "8090:8000"
+    environment:
+      MOCK_PARTNER_ID: "100001"
+      MOCK_PARTNER_KEY: mock-partner-key-stock-sync
+      MOCK_PUBLIC_URL: http://localhost:8090
 
   sales-service:
     build:
